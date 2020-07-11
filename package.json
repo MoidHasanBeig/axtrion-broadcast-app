@@ -2,12 +2,12 @@
   "name": "axtrion-broadcast-app",
   "version": "0.1.0",
   "private": true,
-  "proxy": "http://localhost:8080",
   "dependencies": {
     "express": "^4.17.1",
     "express-subdomain": "^1.0.5",
     "react": "^16.13.1",
     "react-dom": "^16.13.1",
+    "react-router-dom": "^5.2.0",
     "react-scripts": "3.4.1",
     "socket.io": "^2.3.0"
   },
