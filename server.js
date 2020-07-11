@@ -18,11 +18,11 @@ app.use(express.static(path.join(__dirname, 'build')));
 io.sockets.on("error", e => console.log(e));
 
 router1.get('/webcam', (req, res) => {
-  // res.sendFile(path.join(__dirname, 'index.html'));
+  res.sendFile(path.join(__dirname, 'build', 'index.html'));
   res.send('OK');
 });
 router2.get('/watchlive', (req, res) => {
-  // res.sendFile(path.join(__dirname, 'index.html'));
+  res.sendFile(path.join(__dirname, 'build', 'index.html'));
   res.send('OK');
 });
 

@@ -5,13 +5,14 @@ import Watch from './Watch/Watch';
 import './App.css';
 
 function App() {
+
+const subdomain = window.location.hostname.split('.')[0];
+
   return (
-    <Router>
       <div className="App">
-        <Route path="/webcam" exact component={Broadcast} />
-        <Route path="/watchlive" exact component={Watch} />
+        {subdomain === 'webcam' && <Broadcast />}
+        {subdomain === 'watchlive' && <Watch />}
       </div>
-    </Router>
   );
 }
 
