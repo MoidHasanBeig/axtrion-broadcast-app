@@ -29,9 +29,7 @@ router2.get('/watchlive', (req, res) => {
 app.use(subdomain('webcam', router1));
 app.use(subdomain('watchlive', router2));
 
-server.listen(port, () => {
-  console.log(`Server live at port ${port}`);
-});
+server.listen(process.env.PORT || port);
 
 let broadcaster;
 
