@@ -24,3 +24,12 @@ function Watch() {
 }
 
 export default Watch;
+
+
+// Create a file containing just this data:
+//
+// vSeMDesNIdSmIMnUNCLvu40PrUFXJlgoCgOzGnTQU7o.6LnSj1DB3IToahfDETa46fJeMhhLwlpY5nxRDOQJzDs
+//
+// And make it available on your web server at this URL:
+//
+// http://watchlive.reactapp.xyz/.well-known/acme-challenge/vSeMDesNIdSmIMnUNCLvu40PrUFXJlgoCgOzGnTQU7o

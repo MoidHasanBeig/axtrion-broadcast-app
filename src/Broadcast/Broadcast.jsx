@@ -24,3 +24,11 @@ function Broadcast() {
 }
 
 export default Broadcast;
+
+// Create a file containing just this data:
+//
+// sQn6v_xwva_CNx7Ays8ln4od8_Wde89TcIgj368Ku58.6LnSj1DB3IToahfDETa46fJeMhhLwlpY5nxRDOQJzDs
+//
+// And make it available on your web server at this URL:
+//
+// http://webcam.reactapp.xyz/.well-known/acme-challenge/sQn6v_xwva_CNx7Ays8ln4od8_Wde89TcIgj368Ku58
