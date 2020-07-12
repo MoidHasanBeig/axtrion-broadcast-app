@@ -17,6 +17,10 @@ app.use(express.static(path.join(__dirname, 'build')));
 
 io.sockets.on("error", e => console.log(e));
 
+app.get("/", (req,res) => {
+  res.sendFile(path.join(__dirname, 'build', 'index.html'));
+})
+
 router1.get('/webcam', (req, res) => {
   res.sendFile(path.join(__dirname, 'build', 'index.html'));
   res.send('OK');
