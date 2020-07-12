@@ -53,14 +53,15 @@ function configWatch() {
     peerConnection.close();
   });
 
-  document.querySelector("button").addEventListener("click", () => {
-    video.play();
-    console.log("play");
-  });
-
   window.onunload = window.onbeforeunload = () => {
     socket.close();
   };
 }
 
-export default configWatch;
+function leaveRoom() {
+  const socket = socketIOClient(ENDPOINT);
+  socket.close();
+  window.location.reload();
+}
+
+export { configWatch,leaveRoom };

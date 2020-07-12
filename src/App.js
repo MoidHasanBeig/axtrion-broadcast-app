@@ -9,7 +9,7 @@ function App() {
 const subdomain = window.location.hostname.split('.')[0];
 
   return (
-      <div className="App">
+      <div className="h-100 d-flex App">
         {subdomain === 'webcam' && <Broadcast />}
         {subdomain === 'watchlive' && <Watch />}
       </div>

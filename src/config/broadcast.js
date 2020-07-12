@@ -3,6 +3,8 @@ const ENDPOINT = "webcam.reactapp.xyz";
 
 function configBroadcast() {
   const peerConnections = {};
+  const socket = socketIOClient(ENDPOINT);
+  const video = document.querySelector("video");
   console.log('hi');
   const config = {
     iceServers: [
@@ -11,9 +13,6 @@ function configBroadcast() {
       }
     ]
   };
-
-  const socket = socketIOClient(ENDPOINT);
-  const video = document.querySelector("video");
 
   // Media contrains
   const constraints = {
@@ -69,4 +68,10 @@ function configBroadcast() {
   };
 }
 
-export default configBroadcast;
+function stopBroadcast() {
+  const socket = socketIOClient(ENDPOINT);
+  socket.close();
+  window.location.reload();
+}
+
+export { configBroadcast,stopBroadcast };

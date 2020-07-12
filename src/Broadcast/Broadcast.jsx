@@ -1,15 +1,24 @@
-import React,{ useEffect } from 'react';
-import configBroadcast from '../config/broadcast.js';
+import React,{ useState } from 'react';
+import { configBroadcast,stopBroadcast } from '../config/broadcast.js';
 
 function Broadcast() {
 
-  useEffect( () => {
-    configBroadcast();
-  });
+  const [isLive,setIsLive] = useState(false);
+
+  function handleClick() {
+    if(!isLive) {
+      configBroadcast();
+      setIsLive(true);
+    } else {
+      stopBroadcast();
+      setIsLive(false);
+    }
+  }
 
   return (
-    <div className="video-container">
-      <video playsInline autoPlay muted></video>
+    <div className="video-container d-flex flex-column m-auto w-75 h-100 justify-content-center">
+      <video className="bg-dark rounded w-100 h-100" playsInline autoPlay muted></video>
+      <button onClick={handleClick} className="my-2 btn btn-lg btn-danger m-auto w-75" type="button">{!isLive ? 'Go live!' : 'Stop broadcast'}</button>
     </div>
   );
 }
