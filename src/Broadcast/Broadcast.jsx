@@ -32,3 +32,16 @@ export default Broadcast;
 // And make it available on your web server at this URL:
 //
 // http://webcam.reactapp.xyz/.well-known/acme-challenge/sQn6v_xwva_CNx7Ays8ln4od8_Wde89TcIgj368Ku58
+
+// - Congratulations! Your certificate and chain have been saved at:
+//   /etc/letsencrypt/live/webcam.reactapp.xyz/fullchain.pem
+//   Your key file has been saved at:
+//   /etc/letsencrypt/live/webcam.reactapp.xyz/privkey.pem
+//   Your cert will expire on 2020-10-10. To obtain a new or tweaked
+//   version of this certificate in the future, simply run certbot
+//   again. To non-interactively renew *all* of your certificates, run
+//   "certbot renew"
+
+// sudo heroku certs:add /etc/letsencrypt/live/webcam.reactapp.xyz/fullchain.pem /etc/letsencrypt/live/webcam.reactapp.xyz/privkey.pem
+
+// sudo certbot renew --manual

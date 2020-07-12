@@ -8,7 +8,7 @@ const app = express();
 const router1 = express.Router();
 const router2 = express.Router();
 
-const port = 8080;
+const port = process.env.PORT || 8080;
 const server = http.createServer(app);
 const io = require("socket.io")(server);
 
@@ -29,7 +29,9 @@ router2.get('/watchlive', (req, res) => {
 app.use(subdomain('webcam', router1));
 app.use(subdomain('watchlive', router2));
 
-server.listen(process.env.PORT || port);
+server.listen(port, () => {
+  console.log(`Server is live at port ${port}`);
+});
 
 let broadcaster;
 
