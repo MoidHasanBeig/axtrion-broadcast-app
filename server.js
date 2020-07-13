@@ -8,7 +8,7 @@ const app = express();
 const router1 = express.Router();
 const router2 = express.Router();
 
-const port = process.env.PORT || 8080;
+const port = process.env.PORT || 80;
 const server = http.createServer(app);
 const io = require("socket.io")(server);
 
