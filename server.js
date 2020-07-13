@@ -19,7 +19,7 @@ const credentials = {
 const router1 = express.Router();
 const router2 = express.Router();
 
-const port = process.env.PORT || 8080;
+const port = process.env.PORT || 443;
 const server = https.createServer(credentials,app);
 const io = require("socket.io")(server);
 
