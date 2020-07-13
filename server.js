@@ -1,15 +1,26 @@
 const express = require('express');
+const fs = require('fs');
 const subdomain = require('express-subdomain');
 const path = require('path');
-const http = require('http');
+const https = require('https');
 
 const app = express();
+
+const privateKey = fs.readFileSync('/etc/letsencrypt/live/reactapp.xyz/privkey.pem', 'utf8');
+const certificate = fs.readFileSync('/etc/letsencrypt/live/reactapp.xyz/fullchain.pem', 'utf8');
+const ca = fs.readFileSync('/etc/letsencrypt/live/reactapp.xyz/fullchain.pem', 'utf8');
+
+const credentials = {
+	key: privateKey,
+	cert: certificate,
+	ca: ca
+};
 
 const router1 = express.Router();
 const router2 = express.Router();
 
 const port = process.env.PORT || 8080;
-const server = http.createServer(app);
+const server = https.createServer(credentials,app);
 const io = require("socket.io")(server);
 
 app.use(express.static(path.join(__dirname, 'build')));
