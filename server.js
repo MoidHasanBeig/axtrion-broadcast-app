@@ -6,9 +6,9 @@ const https = require('https');
 
 const app = express();
 
-const privateKey = fs.readFileSync('/etc/letsencrypt/live/reactapp.xyz/privkey.pem', 'utf8');
-const certificate = fs.readFileSync('/etc/letsencrypt/live/reactapp.xyz/fullchain.pem', 'utf8');
-const ca = fs.readFileSync('/etc/letsencrypt/live/reactapp.xyz/fullchain.pem', 'utf8');
+const privateKey = fs.readFileSync('/etc/letsencrypt/live/webcam.reactapp.xyz/privkey.pem', 'utf8');
+const certificate = fs.readFileSync('/etc/letsencrypt/live/webcam.reactapp.xyz/fullchain.pem', 'utf8');
+const ca = fs.readFileSync('/etc/letsencrypt/live/webcam.reactapp.xyz/fullchain.pem', 'utf8');
 
 const credentials = {
 	key: privateKey,
