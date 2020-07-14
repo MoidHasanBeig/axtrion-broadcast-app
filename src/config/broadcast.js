@@ -1,5 +1,5 @@
 import socketIOClient from "socket.io-client";
-const ENDPOINT = "reactapp.xyz";
+const ENDPOINT = "webcam.reactapp.xyz";
 
 function configBroadcast() {
   const peerConnections = {};
