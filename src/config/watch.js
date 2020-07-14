@@ -26,6 +26,7 @@ function configWatch() {
       });
     peerConnection.ontrack = event => {
       video.srcObject = event.streams[0];
+      video.muted=!video.muted;
     };
     peerConnection.onicecandidate = event => {
       if (event.candidate) {
