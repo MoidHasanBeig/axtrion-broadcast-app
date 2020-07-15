@@ -16,9 +16,11 @@ function Watch() {
   }
 
     return (
-      <div className="video-container d-flex flex-column m-auto w-75 h-100 justify-content-center">
-        <video className="bg-dark rounded w-100 h-100" playsInline autoPlay muted></video>
-        <button onClick={handleClick} className="my-2 btn btn-lg btn-danger w-75 m-auto" type="button">{!isConnected ? 'Watch live stream!' : 'Exit session'}</button>
+      <div className="watch-container">
+        <div className="position-absolute video-container">
+          <video className="live-video" playsInline autoPlay></video>
+        </div>
+        <button onClick={handleClick} className="position-absolute initiate-action btn btn-lg" type="button">{!isConnected ? 'Watch live stream!' : 'Exit session'}</button>
       </div>
     );
 }

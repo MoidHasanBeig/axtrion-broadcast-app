@@ -1,0 +1,22 @@
+.live-indicator-container {
+  top: 0;
+  width: fit-content;
+
+  .blinker {
+    height: 0.5rem;
+    width: 0.5rem;
+    background: #FF0000;
+    border-radius: 50%;
+    animation-name: blink;
+    animation-duration: 1s;
+    animation-iteration-count: infinite;
+  }
+  @keyframes blink {
+    0% {opacity: 0;}
+    50% {opacity: 1;}
+  }
+  .indicator-text {
+    color: #FFFFFF;
+    font-size: 0.8rem;
+  }
+}

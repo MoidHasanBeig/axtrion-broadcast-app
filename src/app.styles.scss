@@ -1,0 +1,71 @@
+@font-face {
+    font-family: gilroyBold;
+    src: url('./Gilroy-ExtraBold.otf');
+}
+
+@font-face {
+    font-family: gilroyLight;
+    src: url('./Gilroy-Light.otf');
+}
+
+html,body {
+  overflow: hidden;
+
+  .app {
+    font-family: gilroyBold;
+    background: #1D1D1D;
+
+    .axtrion-logo-container {
+      height: fit-content;
+
+      .axtrion-logo {
+        height: 2rem;
+        width: 2rem;
+        background-image: url('./images/axtrionlogo.svg');
+        background-size: 100% 100%;
+      }
+      .axtrion-name {
+        color: #FFFFFF;
+        font-size: 1.5rem;
+      }
+      .axtrion-name::after {
+        content: 'Live';
+        font-family: gilroyLight;
+        font-size: 0.8rem;
+        position: relative;
+        top: 0.8rem;
+        left: -0.8rem;
+      }
+    }
+    .video-container {
+      height: 75vh;
+      width: 70vw;
+      top: 50%;
+      left: 50%;
+      background-color: #333333;
+      border-radius: 20px;
+      transform: translate(-50%,-50%);
+
+      video.live-video {
+        height: 100%;
+        width: 100%;
+        border-radius: 20px;
+        object-fit: cover;
+      }
+    }
+    button.initiate-action {
+      bottom: -1px;
+      left: 50%;
+      transform: translateX(-50%);
+      color: #FFFFFF;
+      border: 2px solid;
+      border-bottom: 0;
+      border-radius: 10px 10px 0 0;
+      min-width: 10rem;
+    }
+    button.initiate-action:hover {
+      color: #1D1D1D;
+      background: #FFFFFF;
+    }
+  }
+}

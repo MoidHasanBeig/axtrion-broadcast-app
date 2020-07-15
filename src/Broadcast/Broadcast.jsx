@@ -1,4 +1,5 @@
 import React,{ useState } from 'react';
+import LiveIndicator from '../components/LiveIndicator/LiveIndicator';
 import { configBroadcast,stopBroadcast } from '../config/broadcast.js';
 
 function Broadcast() {
@@ -16,9 +17,12 @@ function Broadcast() {
   }
 
   return (
-    <div className="video-container d-flex flex-column m-auto w-75 h-100 justify-content-center">
-      <video className="bg-dark rounded w-100 h-100" playsInline autoPlay muted></video>
-      <button onClick={handleClick} className="my-2 btn btn-lg btn-danger m-auto w-75" type="button">{!isLive ? 'Go live!' : 'Stop broadcast'}</button>
+    <div className="broadcast-container">
+      <div className="position-absolute video-container">
+        <LiveIndicator isLive={isLive} />
+        <video className="live-video" playsInline autoPlay muted></video>
+      </div>
+      <button onClick={handleClick} className="position-absolute initiate-action btn btn-lg" type="button">{!isLive ? 'Go live!' : 'Stop broadcast'}</button>
     </div>
   );
 }
