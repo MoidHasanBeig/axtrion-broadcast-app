@@ -41,6 +41,7 @@ function configWatch() {
       .catch(e => console.error(e));
     console.log("ice candidate");
     video.muted=false;
+    console.log(video.muted);
   });
 
   socket.on("connect", () => {
