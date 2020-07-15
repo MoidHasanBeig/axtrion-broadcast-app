@@ -7,9 +7,9 @@ function Watch() {
   const [isConnected,setIsConnected] = useState('READY');
 
   function handleClick() {
-    if(!isConnected==='LIVE') {
+    if(isConnected==='READY') {
       configWatch(setIsConnected);
-    } else {
+    } else if(isConnected==='LIVE') {
       leaveRoom();
     }
   }
