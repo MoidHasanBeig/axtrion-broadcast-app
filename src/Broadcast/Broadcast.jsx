@@ -8,6 +8,7 @@ function Broadcast() {
 
   function handleClick() {
     if(isLive==='READY') {
+      console.log('hi');
       configBroadcast();
       setIsLive('LIVE');
     } else {
