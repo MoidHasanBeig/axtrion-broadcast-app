@@ -26,7 +26,6 @@ function configWatch() {
       });
     peerConnection.ontrack = event => {
       video.srcObject = event.streams[0];
-      video.muted=!video.muted;
     };
     peerConnection.onicecandidate = event => {
       if (event.candidate) {
@@ -40,14 +39,18 @@ function configWatch() {
     peerConnection
       .addIceCandidate(new RTCIceCandidate(candidate))
       .catch(e => console.error(e));
+    console.log("ice candidate");
   });
 
   socket.on("connect", () => {
     socket.emit("watcher");
+    console.log("connect");
   });
 
   socket.on("broadcaster", () => {
     socket.emit("watcher");
+    console.log("broadcaster");
+    video.muted=!video.muted;
   });
 
   socket.on("disconnectPeer", () => {
