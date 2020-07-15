@@ -92,12 +92,15 @@ html {
 @media (orientation: portrait) {
   body,
   html {
-    .app {
-      .video-container {
-        width: 100vw;
-      }
-      .axtrion-bg {
-        display: none;
+    #root {
+
+      .app {
+        .video-container {
+          width: 100vw;
+        }
+        .axtrion-bg {
+          display: none;
+        }
       }
     }
   }
