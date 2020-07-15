@@ -7,7 +7,7 @@ function Broadcast() {
   const [isLive,setIsLive] = useState('READY');
 
   function handleClick() {
-    if(!isLive) {
+    if(isLive==='READY') {
       configBroadcast();
       setIsLive('LIVE');
     } else {
