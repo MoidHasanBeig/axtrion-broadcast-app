@@ -13,7 +13,7 @@ html,body {
 
   .app {
     font-family: gilroyBold;
-    background: #1D1D1D;
+    background-color: #1D1D1D;
 
     .axtrion-logo-container {
       height: fit-content;
@@ -36,6 +36,16 @@ html,body {
         top: 0.8rem;
         left: -0.8rem;
       }
+    }
+    .axtrion-bg {
+      height: 40vw;
+      width: 40vw;
+      position: absolute;
+      bottom: -6rem;
+      right: -6rem;
+      opacity: 0.02;
+      background-image: url('./images/axtrionlogo.svg');
+      background-size: 100% 100%;
     }
     .video-container {
       height: 75vh;

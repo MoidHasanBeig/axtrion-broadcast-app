@@ -13,6 +13,7 @@ const subdomain = window.location.hostname.split('.')[0];
           <div className="axtrion-logo"/>
           <div className="axtrion-name ml-2">Axtrion</div>
         </div>
+        <div className="axtrion-bg" />
         {subdomain === 'webcam' && <Broadcast />}
         {subdomain === 'watchlive' && <Watch />}
       </div>
