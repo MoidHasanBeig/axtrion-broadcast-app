@@ -17,7 +17,6 @@ function configBroadcast() {
   // Media contrains
   const constraints = {
     video: { facingMode: "user" },
-    // Uncomment to enable audio
     audio: true,
   };
 

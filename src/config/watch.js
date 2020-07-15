@@ -22,6 +22,7 @@ function configWatch() {
       .then(sdp => peerConnection.setLocalDescription(sdp))
       .then(() => {
         socket.emit("answer", id, peerConnection.localDescription);
+        console.log("25");
       });
     peerConnection.ontrack = event => {
       video.srcObject = event.streams[0];
@@ -29,6 +30,7 @@ function configWatch() {
     peerConnection.onicecandidate = event => {
       if (event.candidate) {
         socket.emit("candidate", id, event.candidate);
+        console.log("32");
       }
     };
   });
@@ -41,10 +43,12 @@ function configWatch() {
 
   socket.on("connect", () => {
     socket.emit("watcher");
+    console.log("44");
   });
 
   socket.on("broadcaster", () => {
     socket.emit("watcher");
+    console.log("49");
   });
 
   socket.on("disconnectPeer", () => {
