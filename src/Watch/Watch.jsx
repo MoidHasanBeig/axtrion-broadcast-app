@@ -1,4 +1,5 @@
 import React,{ useState } from 'react';
+import LiveIndicator from '../components/LiveIndicator/LiveIndicator';
 import { configWatch,leaveRoom } from '../config/watch.js';
 
 function Watch() {
@@ -18,6 +19,7 @@ function Watch() {
     return (
       <div className="watch-container">
         <div className="position-absolute video-container">
+          <LiveIndicator isLive={isConnected} />
           <video className="live-video" playsInline autoPlay></video>
         </div>
         <button onClick={handleClick} className="position-absolute initiate-action btn btn-lg" type="button">{!isConnected ? 'Watch live stream!' : 'Exit session'}</button>
