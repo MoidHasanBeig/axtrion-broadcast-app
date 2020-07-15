@@ -4,10 +4,10 @@ import { configWatch,leaveRoom } from '../config/watch.js';
 
 function Watch() {
 
-  const [isConnected,setIsConnected] = useState(false);
+  const [isConnected,setIsConnected] = useState('READY');
 
   function handleClick() {
-    if(!isConnected) {
+    if(!isConnected==='LIVE') {
       configWatch(setIsConnected);
     } else {
       leaveRoom();
@@ -20,7 +20,7 @@ function Watch() {
           <LiveIndicator isLive={isConnected} />
           <video className="live-video" playsInline autoPlay></video>
         </div>
-        <button onClick={handleClick} className="position-absolute initiate-action btn btn-lg" type="button">{!isConnected ? 'Watch live stream!' : 'Exit session'}</button>
+        <button onClick={handleClick} className="position-absolute initiate-action btn btn-lg" type="button">{isConnected==='READY' ? 'Watch live stream!' : 'Exit session'}</button>
       </div>
     );
 }

@@ -45,6 +45,7 @@ function configWatch(setIsConnected) {
   socket.on("connect", () => {
     socket.emit("watcher");
     console.log("44");
+    setIsConnected('AWAITING SESSION TO START');
   });
 
   socket.on("broadcaster", () => {

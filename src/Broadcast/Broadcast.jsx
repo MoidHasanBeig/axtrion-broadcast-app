@@ -4,15 +4,14 @@ import { configBroadcast,stopBroadcast } from '../config/broadcast.js';
 
 function Broadcast() {
 
-  const [isLive,setIsLive] = useState(false);
+  const [isLive,setIsLive] = useState('READY');
 
   function handleClick() {
     if(!isLive) {
       configBroadcast();
-      setIsLive(true);
+      setIsLive('LIVE');
     } else {
       stopBroadcast();
-      setIsLive(false);
     }
   }
 
@@ -22,7 +21,7 @@ function Broadcast() {
         <LiveIndicator isLive={isLive} />
         <video className="live-video" playsInline autoPlay muted></video>
       </div>
-      <button onClick={handleClick} className="position-absolute initiate-action btn btn-lg" type="button">{!isLive ? 'Go live!' : 'Stop broadcast'}</button>
+      <button onClick={handleClick} className="position-absolute initiate-action btn btn-lg" type="button">{isLive==='READY' ? 'Go live!' : 'Stop broadcast'}</button>
     </div>
   );
 }
