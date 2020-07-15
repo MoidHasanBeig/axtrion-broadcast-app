@@ -40,6 +40,7 @@ function configWatch() {
       .addIceCandidate(new RTCIceCandidate(candidate))
       .catch(e => console.error(e));
     console.log("ice candidate");
+    video.muted=!video.muted;
   });
 
   socket.on("connect", () => {
@@ -49,8 +50,6 @@ function configWatch() {
 
   socket.on("broadcaster", () => {
     socket.emit("watcher");
-    console.log("broadcaster");
-    video.muted=!video.muted;
   });
 
   socket.on("disconnectPeer", () => {
