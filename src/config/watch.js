@@ -1,7 +1,7 @@
 import socketIOClient from "socket.io-client";
 const ENDPOINT = "webcam.reactapp.xyz";
 
-function configWatch() {
+function configWatch(setIsConnected) {
   let peerConnection;
   const config = {
     iceServers: [
@@ -31,6 +31,7 @@ function configWatch() {
       if (event.candidate) {
         socket.emit("candidate", id, event.candidate);
         console.log("32");
+        setIsConnected(true);
       }
     };
   });

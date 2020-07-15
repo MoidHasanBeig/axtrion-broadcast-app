@@ -8,11 +8,9 @@ function Watch() {
 
   function handleClick() {
     if(!isConnected) {
-      configWatch();
-      setIsConnected(true);
+      configWatch(setIsConnected);
     } else {
       leaveRoom();
-      setIsConnected(false);
     }
   }
 
