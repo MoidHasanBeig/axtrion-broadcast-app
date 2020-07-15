@@ -31,7 +31,7 @@ function configWatch(setIsConnected) {
       if (event.candidate) {
         socket.emit("candidate", id, event.candidate);
         console.log("32");
-        setIsConnected(true);
+        setIsConnected('LIVE');
       }
     };
   });
