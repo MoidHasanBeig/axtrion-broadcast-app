@@ -9,7 +9,7 @@ function Watch() {
   function handleClick() {
     if(isConnected==='READY') {
       configWatch(setIsConnected);
-    } else if(isConnected==='LIVE') {
+    } else if {
       leaveRoom();
     }
   }
