@@ -31,6 +31,7 @@ function configWatch(setIsConnected) {
       if (event.candidate) {
         socket.emit("candidate", id, event.candidate);
         console.log("32");
+        setIsConnected('SESSION IS STARTING...');
         video.addEventListener("play", () => {
           setIsConnected('LIVE');
         });
