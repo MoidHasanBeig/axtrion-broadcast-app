@@ -31,7 +31,9 @@ function configWatch(setIsConnected) {
       if (event.candidate) {
         socket.emit("candidate", id, event.candidate);
         console.log("32");
-        setIsConnected('LIVE');
+        video.addEventListener("play", () => {
+          setIsConnected('LIVE');
+        });
       }
     };
   });
