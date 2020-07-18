@@ -44,7 +44,6 @@ app.get("/", (req,res) => {
 // });
 router.get('/', (req, res) => {
   res.sendFile(path.join(__dirname, 'build', 'index.html'));
-  res.send('OK');
 });
 
 app.use('/webcam', router);

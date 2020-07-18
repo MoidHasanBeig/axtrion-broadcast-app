@@ -5,12 +5,14 @@ import './app.styles.scss';
 
 function App() {
 
-const subdomain = window.location.hostname.split('.')[0];
-if (subdomain === 'webcam') {
-  document.title = 'Axtrion Digital - Web Cammers | The Finest Digital Experiences.'
-} else if (subdomain === 'watchlive') {
-  document.title = 'Axtrion Digital - Watch Live Cam | The Finest Digital Experiences.'
-}
+// const subdomain = window.location.hostname.split('.')[0];
+// if (subdomain === 'webcam') {
+//   document.title = 'Axtrion Digital - Web Cammers | The Finest Digital Experiences.'
+// } else if (subdomain === 'watchlive') {
+//   document.title = 'Axtrion Digital - Watch Live Cam | The Finest Digital Experiences.'
+// }
+
+const path = window.location.pathname;
 
   return (
       <div className="d-flex app">
@@ -19,8 +21,8 @@ if (subdomain === 'webcam') {
           <div className="axtrion-name ml-2">Axtrion</div>
         </div>
         <div className="axtrion-bg" />
-        {subdomain === 'webcam' && <Broadcast />}
-        {subdomain === 'watchlive' && <Watch />}
+        {path === '/webcam' && <Broadcast />}
+        {path === '/watchlive' && <Watch />}
       </div>
   );
 }
