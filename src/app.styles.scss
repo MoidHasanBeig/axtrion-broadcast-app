@@ -17,22 +17,22 @@ html {
 
   #root {
     .app {
-      .axtrion-logo-container {
+      .webbcast-logo-container {
         height: fit-content;
 
-        .axtrion-logo {
+        .webbcast-logo {
           height: 2rem;
           width: 2rem;
-          background-image: url("./images/axtrionlogo.svg");
+          background-image: url("./images/webbcastlogo.svg");
           background-size: 100% 100%;
         }
 
-        .axtrion-name {
+        .webbcast-name {
           color: #FFFFFF;
           font-size: 1.5rem;
         }
 
-        .axtrion-name::after {
+        .webbcast-name::after {
           content: 'Live';
           font-family: gilroyLight;
           font-size: 0.8rem;
@@ -42,14 +42,14 @@ html {
         }
       }
 
-      .axtrion-bg {
+      .webbcast-bg {
         height: 32vw;
         width: 32vw;
         position: absolute;
         bottom: 0;
         right: 0;
         opacity: 0.02;
-        background-image: url("./images/axtrion-bg.svg");
+        background-image: url("./images/webbcast-bg.svg");
         background-size: 100% 100%;
       }
 
@@ -98,7 +98,7 @@ html {
         .video-container {
           width: 100vw;
         }
-        .axtrion-bg {
+        .webbcast-bg {
           display: none;
         }
       }
