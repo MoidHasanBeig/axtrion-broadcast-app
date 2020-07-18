@@ -17,8 +17,9 @@ const app = express();
 // 	ca: ca
 // };
 
-const router1 = express.Router();
-const router2 = express.Router();
+// const router1 = express.Router();
+// const router2 = express.Router();
+const router = express.Router();
 
 const port = process.env.PORT || 8080;
 // const server = https.createServer(credentials,app);
@@ -33,17 +34,21 @@ app.get("/", (req,res) => {
   res.sendFile(path.join(__dirname, 'build', 'index.html'));
 })
 
-router1.get('/webcam', (req, res) => {
-  res.sendFile(path.join(__dirname, 'build', 'index.html'));
-  res.send('OK');
-});
-router2.get('/watchlive', (req, res) => {
+// router1.get('/webcam', (req, res) => {
+//   res.sendFile(path.join(__dirname, 'build', 'index.html'));
+//   res.send('OK');
+// });
+// router2.get('/watchlive', (req, res) => {
+//   res.sendFile(path.join(__dirname, 'build', 'index.html'));
+//   res.send('OK');
+// });
+router.get('/', (req, res) => {
   res.sendFile(path.join(__dirname, 'build', 'index.html'));
   res.send('OK');
 });
 
-app.use(subdomain('webcam', router1));
-app.use(subdomain('watchlive', router2));
+app.use('/webcam', router);
+app.use('/watchlive', router);
 
 server.listen(port, () => {
   console.log(`Server is live at port ${port}`);
