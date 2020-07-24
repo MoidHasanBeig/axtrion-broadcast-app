@@ -5,11 +5,12 @@ import { configBroadcast,stopBroadcast } from '../config/broadcast.js';
 function Broadcast() {
 
   const [isLive,setIsLive] = useState('READY');
+  const [liveId,setLiveId] = useState('');
 
   function handleClick() {
     if(isLive==='READY') {
       console.log('hi');
-      configBroadcast();
+      configBroadcast(setLiveId);
       setIsLive('LIVE');
     } else {
       stopBroadcast();
@@ -18,6 +19,7 @@ function Broadcast() {
 
   return (
     <div className="broadcast-container">
+      <div className="position-absolute">{liveId}</div>
       <div className="position-absolute video-container">
         <LiveIndicator isLive={isLive} />
         <video className="live-video" playsInline autoPlay muted></video>

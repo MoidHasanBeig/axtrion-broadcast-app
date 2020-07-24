@@ -1,9 +1,13 @@
 import socketIOClient from "socket.io-client";
-const ENDPOINT = "webbcast.herokuapp.com";
+const ENDPOINT = "http://localhost:8080";
 
-function configBroadcast() {
+function configBroadcast(setLiveId) {
   const peerConnections = {};
   const socket = socketIOClient(ENDPOINT);
+  socket.on("connect", () => {
+    setLiveId(socket.id);
+    console.log(socket.id);
+  })
   const video = document.querySelector("video");
   console.log('hi');
   const config = {

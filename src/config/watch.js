@@ -1,7 +1,7 @@
 import socketIOClient from "socket.io-client";
-const ENDPOINT = "webbcast.herokuapp.com";
+const ENDPOINT = "http://localhost:8080";
 
-function configWatch(setIsConnected) {
+function configWatch(setIsConnected,inputValue) {
   let peerConnection;
   const config = {
     iceServers: [
@@ -21,7 +21,7 @@ function configWatch(setIsConnected) {
       .then(() => peerConnection.createAnswer())
       .then(sdp => peerConnection.setLocalDescription(sdp))
       .then(() => {
-        socket.emit("answer", id, peerConnection.localDescription);
+        socket.emit("answer", inputValue, peerConnection.localDescription);
         console.log("25");
       });
     peerConnection.ontrack = event => {
@@ -29,7 +29,7 @@ function configWatch(setIsConnected) {
     };
     peerConnection.onicecandidate = event => {
       if (event.candidate) {
-        socket.emit("candidate", id, event.candidate);
+        socket.emit("candidate", inputValue, event.candidate);
         console.log("32");
         setIsConnected('SESSION IS STARTING...');
         video.addEventListener("play", () => {
