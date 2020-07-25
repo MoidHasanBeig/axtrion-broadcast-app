@@ -1,5 +1,5 @@
 import socketIOClient from "socket.io-client";
-const ENDPOINT = "webbcast.herokuapp.com";
+const ENDPOINT = "http://localhost:8080";
 
 function configBroadcast(setLiveId) {
   const peerConnections = {};
@@ -72,8 +72,6 @@ function configBroadcast(setLiveId) {
 }
 
 function stopBroadcast() {
-  const socket = socketIOClient(ENDPOINT);
-  socket.close();
   window.location.reload();
 }
 

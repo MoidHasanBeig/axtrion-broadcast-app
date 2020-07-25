@@ -53,21 +53,21 @@ server.listen(port, () => {
   console.log(`Server is live at port ${port}`);
 });
 
-let broadcaster;
+let broadcaster=[];
 
 io.sockets.on("connection", socket => {
-
+  console.log(socket.id);
   //connection for clients and broadcaster
 
   socket.on("broadcaster", () => {
-    broadcaster = socket.id;
+    broadcaster.push(socket.id);
     socket.broadcast.emit("broadcaster");
   });
   socket.on("watcher", () => {
-    socket.to(broadcaster).emit("watcher", socket.id);
+    socket.to(broadcaster[broadcaster.length-1]).emit("watcher", socket.id);
   });
   socket.on("disconnect", () => {
-    socket.to(broadcaster).emit("disconnectPeer", socket.id);
+    socket.to(broadcaster[broadcaster.length-1]).emit("disconnectPeer", socket.id);
   });
 
   //socket events

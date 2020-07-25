@@ -1,5 +1,5 @@
 import socketIOClient from "socket.io-client";
-const ENDPOINT = "webbcast.herokuapp.com";
+const ENDPOINT = "http://localhost:8080";
 
 function configWatch(setIsConnected,inputValue) {
   let peerConnection;
@@ -66,8 +66,6 @@ function configWatch(setIsConnected,inputValue) {
 }
 
 function leaveRoom() {
-  const socket = socketIOClient(ENDPOINT);
-  socket.close();
   window.location.reload();
 }
 
