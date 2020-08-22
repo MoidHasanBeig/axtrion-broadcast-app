@@ -1,4 +1,5 @@
 import React from 'react';
+import Home from './Home/Home';
 import Broadcast from './Broadcast/Broadcast';
 import Watch from './Watch/Watch';
 import './app.styles.scss';
@@ -21,6 +22,7 @@ const path = window.location.pathname;
           <div className="webbcast-name ml-2">Webbcast</div>
         </div>
         <div className="webbcast-bg" />
+        {path === '/' && <Home />}
         {path === '/webcam' && <Broadcast />}
         {path === '/watchlive' && <Watch />}
       </div>

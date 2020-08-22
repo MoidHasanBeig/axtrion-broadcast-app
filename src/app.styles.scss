@@ -53,6 +53,26 @@ html {
         background-size: 100% 100%;
       }
 
+      .home-menu {
+        display: flex;
+        position: absolute;
+        flex-direction: column;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%,-50%);
+        h1 {
+          color: #999999;
+        }
+        a {
+          font-family: gilroyLight;
+          color: #FFFFFF;
+          font-size: 1.5rem;
+          span {
+            font-family: gilroyBold;
+          }
+        }
+      }
+
       .video-container {
         height: 75vh;
         width: 70vw;
