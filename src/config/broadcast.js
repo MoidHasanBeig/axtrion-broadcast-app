@@ -1,13 +1,9 @@
 import socketIOClient from "socket.io-client";
 const ENDPOINT = "webbcast.herokuapp.com";
 
-function configBroadcast(setLiveId) {
+function configBroadcast() {
   const peerConnections = {};
   const socket = socketIOClient(ENDPOINT);
-  socket.on("connect", () => {
-    setLiveId(socket.id);
-    console.log(socket.id);
-  })
   const video = document.querySelector("video");
   console.log('hi');
   const config = {
@@ -28,20 +24,20 @@ function configBroadcast(setLiveId) {
     .getUserMedia(constraints)
     .then(stream => {
       video.srcObject = stream;
-      socket.emit("broadcaster",socket.id);
+      socket.emit("broadcaster");
     })
     .catch(error => console.error(error));
 
-    socket.on("watcher", watchId => {
+    socket.on("watcher", id => {
     const peerConnection = new RTCPeerConnection(config);
-    peerConnections[watchId] = peerConnection;
+    peerConnections[id] = peerConnection;
 
     let stream = video.srcObject;
     stream.getTracks().forEach(track => peerConnection.addTrack(track, stream));
 
     peerConnection.onicecandidate = event => {
       if (event.candidate) {
-        socket.emit("candidate", watchId, socket.id, event.candidate);
+        socket.emit("candidate", id, event.candidate);
       }
     };
 
@@ -49,12 +45,12 @@ function configBroadcast(setLiveId) {
       .createOffer()
       .then(sdp => peerConnection.setLocalDescription(sdp))
       .then(() => {
-        socket.emit("offer", watchId, socket.id, peerConnection.localDescription);
+        socket.emit("offer", id, peerConnection.localDescription);
       });
   });
 
-  socket.on("answer", (watchId, description) => {
-    peerConnections[watchId].setRemoteDescription(description);
+  socket.on("answer", (id, description) => {
+    peerConnections[id].setRemoteDescription(description);
   });
 
   socket.on("candidate", (id, candidate) => {
@@ -72,6 +68,8 @@ function configBroadcast(setLiveId) {
 }
 
 function stopBroadcast() {
+  const socket = socketIOClient(ENDPOINT);
+  socket.close();
   window.location.reload();
 }
 
