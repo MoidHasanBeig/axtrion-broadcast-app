@@ -53,32 +53,31 @@ server.listen(port, () => {
   console.log(`Server is live at port ${port}`);
 });
 
-let broadcaster;
+let broadcaster=[];
 
 io.sockets.on("connection", socket => {
-
   //connection for clients and broadcaster
 
-  socket.on("broadcaster", () => {
-    broadcaster = socket.id;
-    socket.broadcast.emit("broadcaster");
+  socket.on("broadcaster", (broadcastId) => {
+    broadcaster.push(broadcastId);
+    socket.broadcast.emit("broadcaster",broadcastId);
   });
-  socket.on("watcher", () => {
-    socket.to(broadcaster).emit("watcher", socket.id);
+  socket.on("watcher", (broadcastId, watchId) => {
+    socket.to(broadcastId).emit("watcher", watchId);
   });
   socket.on("disconnect", () => {
-    socket.to(broadcaster).emit("disconnectPeer", socket.id);
+    socket.to(broadcaster[broadcaster.length-1]).emit("disconnectPeer", socket.id);
   });
 
   //socket events
 
-  socket.on("offer", (id, message) => {
-      socket.to(id).emit("offer", socket.id, message);
+  socket.on("offer", (watchId, broadcastId, message) => {
+      socket.to(watchId).emit("offer", broadcastId, message);
   });
-  socket.on("answer", (id, message) => {
-    socket.to(id).emit("answer", socket.id, message);
+  socket.on("answer", (broadcastId, watchId, message) => {
+    socket.to(broadcastId).emit("answer", watchId, message);
   });
-  socket.on("candidate", (id, message) => {
-    socket.to(id).emit("candidate", socket.id, message);
+  socket.on("candidate", (id, socketId, message) => {
+    socket.to(id).emit("candidate", socketId, message);
   });
 });

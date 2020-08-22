@@ -5,13 +5,20 @@ import { configWatch,leaveRoom } from '../config/watch.js';
 function Watch() {
 
   const [isConnected,setIsConnected] = useState('READY');
+  const [inputValue,setInputValue] = useState('');
 
-  function handleClick() {
+  function handleClick(evt) {
+    evt.preventDefault();
     if(isConnected==='READY') {
-      configWatch(setIsConnected);
+      configWatch(setIsConnected,inputValue);
+      setInputValue('');
     } else {
       leaveRoom();
     }
+  }
+
+  function handleChange(evt) {
+    setInputValue(evt.target.value);
   }
 
     return (
@@ -20,7 +27,10 @@ function Watch() {
           <LiveIndicator isLive={isConnected} />
           <video className="live-video" playsInline autoPlay></video>
         </div>
-        <button onClick={handleClick} className="position-absolute initiate-action btn btn-lg" type="button">{isConnected==='READY' ? 'Watch live stream!' : 'Exit session'}</button>
+        <form onSubmit={handleClick}>
+          <input onChange={handleChange} value={inputValue} />
+          <button className="position-absolute initiate-action btn btn-lg" type="submit">{isConnected==='READY' ? 'Watch live stream!' : 'Exit session'}</button>
+        </form>
       </div>
     );
 }

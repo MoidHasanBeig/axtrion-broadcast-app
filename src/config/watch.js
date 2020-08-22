@@ -1,7 +1,7 @@
 import socketIOClient from "socket.io-client";
 const ENDPOINT = "webbcast.herokuapp.com";
 
-function configWatch(setIsConnected) {
+function configWatch(setIsConnected,inputValue) {
   let peerConnection;
   const config = {
     iceServers: [
@@ -14,46 +14,48 @@ function configWatch(setIsConnected) {
   const socket = socketIOClient(ENDPOINT);
   const video = document.querySelector("video");
 
-  socket.on("offer", (id, description) => {
-    peerConnection = new RTCPeerConnection(config);
-    peerConnection
+  socket.on("offer", (broadcastId, description) => {
+    if (broadcastId === inputValue) {
+      peerConnection = new RTCPeerConnection(config);
+      peerConnection
       .setRemoteDescription(description)
       .then(() => peerConnection.createAnswer())
       .then(sdp => peerConnection.setLocalDescription(sdp))
       .then(() => {
-        socket.emit("answer", id, peerConnection.localDescription);
-        console.log("25");
+        socket.emit("answer", broadcastId, socket.id, peerConnection.localDescription);
       });
-    peerConnection.ontrack = event => {
-      video.srcObject = event.streams[0];
-    };
-    peerConnection.onicecandidate = event => {
-      if (event.candidate) {
-        socket.emit("candidate", id, event.candidate);
-        console.log("32");
-        setIsConnected('SESSION IS STARTING...');
-        video.addEventListener("play", () => {
-          setIsConnected('LIVE');
-        });
-      }
-    };
+      peerConnection.ontrack = event => {
+        video.srcObject = event.streams[0];
+      };
+      peerConnection.onicecandidate = event => {
+        if (event.candidate) {
+          socket.emit("candidate", broadcastId, socket.id, event.candidate);
+          setIsConnected('SESSION IS STARTING...');
+          video.addEventListener("play", () => {
+            setIsConnected('LIVE');
+          });
+        }
+      };
+    }
   });
 
-  socket.on("candidate", (id, candidate) => {
-    peerConnection
+  socket.on("candidate", (broadcastId, candidate) => {
+    if(broadcastId === inputValue) {
+      peerConnection
       .addIceCandidate(new RTCIceCandidate(candidate))
       .catch(e => console.error(e));
+    }
   });
 
   socket.on("connect", () => {
-    socket.emit("watcher");
-    console.log("44");
+    socket.emit("watcher", inputValue, socket.id);
     setIsConnected('AWAITING SESSION TO START');
   });
 
-  socket.on("broadcaster", () => {
-    socket.emit("watcher");
-    console.log("49");
+  socket.on("broadcaster", (broadcastId) => {
+    if (broadcastId === inputValue) {
+      socket.emit("watcher",broadcastId ,socket.id);
+    }
   });
 
   socket.on("disconnectPeer", () => {
@@ -66,8 +68,6 @@ function configWatch(setIsConnected) {
 }
 
 function leaveRoom() {
-  const socket = socketIOClient(ENDPOINT);
-  socket.close();
   window.location.reload();
 }
 
