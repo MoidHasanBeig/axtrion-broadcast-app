@@ -1,11 +1,13 @@
 import React,{ useState } from 'react';
 import LiveIndicator from '../components/LiveIndicator/LiveIndicator';
+import InviteModal from '../components/InviteModal/InviteModal';
 import { configBroadcast,stopBroadcast } from '../config/broadcast.js';
 
 function Broadcast() {
 
   const [isLive,setIsLive] = useState('READY');
   const [liveId,setLiveId] = useState('');
+  const [isVisible,setIsVisible] = useState(true);
 
   function handleClick() {
     if(isLive==='READY') {
@@ -19,7 +21,8 @@ function Broadcast() {
 
   return (
     <div className="broadcast-container">
-      <div className="live-id position-absolute">{liveId}</div>
+      {liveId!=='' && <InviteModal liveId={liveId} isVisible={isVisible} setIsVisible={setIsVisible}/>}
+      {liveId!=='' && !isVisible && <div onClick={() => setIsVisible(true)} className="show-id btn">Invite</div>}
       <div className="position-absolute video-container">
         <LiveIndicator isLive={isLive} />
         <video className="live-video" playsInline autoPlay muted></video>
