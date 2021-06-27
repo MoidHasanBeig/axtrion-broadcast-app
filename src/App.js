@@ -1,6 +1,7 @@
 import React from 'react';
 import Broadcast from './Broadcast/Broadcast';
 import Watch from './Watch/Watch';
+import Home from './Home/Home';
 import './app.styles.scss';
 
 function App() {
@@ -16,11 +17,12 @@ const path = window.location.pathname;
 
   return (
       <div className="d-flex app">
-        <div className="webbcast-logo-container d-flex flex-row m-3">
+        <a href="/" className="webbcast-logo-container d-flex flex-row m-3">
           <div className="webbcast-logo"/>
           <div className="webbcast-name ml-2">Webbcast</div>
-        </div>
+        </a>
         <div className="webbcast-bg" />
+        {path === '/' && <Home />}
         {path === '/webcam' && <Broadcast />}
         {path === '/watchlive' && <Watch />}
       </div>

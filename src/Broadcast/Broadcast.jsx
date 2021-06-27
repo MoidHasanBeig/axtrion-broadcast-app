@@ -19,7 +19,7 @@ function Broadcast() {
 
   return (
     <div className="broadcast-container">
-      <div className="position-absolute">{liveId}</div>
+      <div className="live-id position-absolute">{liveId}</div>
       <div className="position-absolute video-container">
         <LiveIndicator isLive={isLive} />
         <video className="live-video" playsInline autoPlay muted></video>

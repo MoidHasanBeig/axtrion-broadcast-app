@@ -28,7 +28,10 @@ function Watch() {
           <video className="live-video" playsInline autoPlay></video>
         </div>
         <form onSubmit={handleClick}>
-          <input onChange={handleChange} value={inputValue} />
+          {isConnected==='READY'&& <div className="passkey-container">
+            Enter session ID
+            <input required className="passkey" onChange={handleChange} value={inputValue} />
+          </div>}
           <button className="position-absolute initiate-action btn btn-lg" type="submit">{isConnected==='READY' ? 'Watch live stream!' : 'Exit session'}</button>
         </form>
       </div>
