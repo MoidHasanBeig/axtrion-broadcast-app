@@ -1,5 +1,5 @@
 import socketIOClient from "socket.io-client";
-const ENDPOINT = "webbcast.herokuapp.com";
+const ENDPOINT = "axtrion-broadcast-app.onrender.com";
 
 function configWatch(setIsConnected,inputValue) {
   let peerConnection;
